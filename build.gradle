@@ -1,0 +1,28 @@
+plugins {
+    id 'groovy'
+}
+
+repositories {
+    ivy {
+        url 'http://data.cstr.ed.ac.uk/mocha/'
+        layout 'pattern', {
+            artifact '[module]_v[revision].[ext]'
+        }
+    }
+}
+
+configurations {
+    data
+}
+
+sourceSets {
+    data
+}
+
+dependencies {
+    data group: 'uk.ac.ed.cstr', name: 'msak0', version: '1.1', ext: 'tar.gz'
+}
+
+processDataResources {
+    from configurations.data
+}
